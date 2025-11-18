@@ -17,3 +17,9 @@ console.log(timetable.getTimetable());
 
 //Get total amount of hours for specific module
 console.log('You have ' + timetable.getTotalHrs('EGL101') + 'Hrs on this module in total');
+
+//Delete a schedule or all schedule
+console.log(timetable.deleteSchedule(3));
+
+//Get timetable
+console.log(timetable.getTimetable());

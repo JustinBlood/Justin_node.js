@@ -20,5 +20,7 @@ For some tips in formatting text in readme file, refer to https://docs.github.co
 
 -5 Function: timetable.getTotalHrs() -> Enter moduleCode in the parameter and it will total up the hrs for that module if you have more of the same module in different weekdays
 
+-6 Function: timetable.getTimetable() -> Enter the schedule index to select which schedule to delete OR add all string in the function to delete all schedule e.g. timetable.getTimetable(3,'all')
+
 # References
 Provide the references that you have used to support your assignment. 

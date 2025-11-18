@@ -48,5 +48,16 @@ module.exports = {
         const result = this.timetable.filter(({ module }) => module === moduleName);
         result.forEach(timetable => sum = sum + timetable.hours);
         return sum;
+    },
+    //delete one schedule record
+    deleteSchedule(index,all){
+        if(all == 'all'){
+            this.timetable.splice(0, this.timetable.length);
+            return 'You have deleted all schedule';
+        }
+        else{
+            this.timetable.splice(index, 1);
+            return 'You have deleted a schedule';
+        }
     }
 }
