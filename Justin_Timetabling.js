@@ -2,20 +2,37 @@ module.exports = {
     timetable: [],
     // This allow user to enter the details of the scheduled classes
     scheduleClass(module, day, location, start, end, hours) {
-        this.timetable.push({
-            module: module,
-            day: day,
-            location: location,
-            start: start,
-            end: end,
-            hours: hours
-        });
+        if(module != null && day != null && location != null && start != null && end != null && hours != null){
+            if (!Number.isInteger(hours)) {
+                console.log("Hours must be an integer.");
+            }
+            else{
+                this.timetable.push({
+                    module: module,
+                    day: day,
+                    location: location,
+                    start: start,
+                    end: end,
+                    hours: hours
+                });
+            }
+        }
+        else{
+            console.log("Please make sure to enter moduleCode, weekday, blockLocation, startTime, endTime, hours.");
+        }
     },
+
     // This finds the module name and adds tutorName into the specific object
     addTutor(modName, tutorName) {
         const result = this.timetable.filter(({ module }) => module === modName);
-        result.forEach(timetable => timetable.tutor = tutorName)
+        if(result.length == 0){
+            console.log("Did you insert an existing moduleCode?")
+        }
+        else{
+            result.forEach(timetable => timetable.tutor = tutorName)
+        }
     },
+
     // This allows you to edit the specific module
     updateTimetable(index, newModule, newDay, newLocation, newStart, newEnd, newHrs) {
         result = this.timetable[index];
@@ -35,20 +52,28 @@ module.exports = {
             result.end = newEnd;
         }
         if (newHrs != null) {
-            result.hours = newHrs;
+            if (!Number.isInteger(newHrs)) {
+                console.log("Update Unsuccessful: Hours must be an integer.");
+            }
+            else{
+                result.hours = newHrs;
+            }
         }
     },
+
     // This get all the objects in the array
     getTimetable() {
         return this.timetable;
     },
+
     // get all the same module name and add the number of hours
     getTotalHrs(moduleName) {
         sum = 0;
         const result = this.timetable.filter(({ module }) => module === moduleName);
         result.forEach(timetable => sum = sum + timetable.hours);
-        return sum;
+        console.log('You have ' + sum + `Hrs on this ${moduleName} module in total`);
     },
+    
     //delete one schedule record
     deleteSchedule(index,all){
         if(all == 'all'){
